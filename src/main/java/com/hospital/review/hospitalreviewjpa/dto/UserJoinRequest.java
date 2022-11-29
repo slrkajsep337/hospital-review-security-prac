@@ -17,10 +17,10 @@ public class UserJoinRequest { //회원가입 때 요청받을 정보
     private String email;
 
     //request정보 -> 엔티티로 만들어주기
-    public User toEntity() {
+    public User toEntity(String password) {
         return User.builder()
                 .userName(this.userName)
-                .password(this.password)
+                .password(password)
                 .emailAddress(this.email)
                 .build();
     }
