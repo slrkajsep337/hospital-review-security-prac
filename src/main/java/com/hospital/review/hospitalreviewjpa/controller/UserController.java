@@ -2,9 +2,7 @@ package com.hospital.review.hospitalreviewjpa.controller;
 
 
 import com.hospital.review.hospitalreviewjpa.domain.Response;
-import com.hospital.review.hospitalreviewjpa.dto.UserDto;
-import com.hospital.review.hospitalreviewjpa.dto.UserJoinRequest;
-import com.hospital.review.hospitalreviewjpa.dto.UserJoinResponse;
+import com.hospital.review.hospitalreviewjpa.dto.*;
 import com.hospital.review.hospitalreviewjpa.service.UserService;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -20,11 +18,19 @@ public class UserController {
 
     private final UserService us;
 
-    @PostMapping
+    @PostMapping("/join")
     //response entity가 아닌 response 타입으로 반환
     public Response<UserJoinResponse> join(@RequestBody UserJoinRequest userJoinRequest) {
         UserDto userDto = us.join(userJoinRequest);
         return Response.success(new UserJoinResponse(userDto.getUserName(),userDto.getEmail()));
     }
+
+    @PostMapping("/login")
+    public Response<UserLoginResponse> login(@RequestBody UserLoginRequest userLoginRequest) {
+        String token = us.login(userLoginRequest.getUserName(), userLoginRequest.getPassword());
+        return Response.success(new UserLoginResponse(token));
+    }
+
+
 
 }
