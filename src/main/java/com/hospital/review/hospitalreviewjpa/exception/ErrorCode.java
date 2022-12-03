@@ -12,6 +12,7 @@ public enum ErrorCode {
 
     DUPLICATED_USER_NAME(HttpStatus.CONFLICT, "User name is duplicated."),
     NOT_FOUND(HttpStatus.NOT_FOUND, "UserName Not Found."),
+    //HttpStatus -> 200, 400, 500등 ...
     INVALID_PASSWORD(HttpStatus.BAD_REQUEST, "password is not correct") ;
 
 

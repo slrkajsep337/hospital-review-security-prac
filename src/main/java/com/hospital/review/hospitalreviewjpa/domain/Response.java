@@ -18,6 +18,7 @@ public class Response<T> {
         return new Response(resultCode, null);
     }
 
+    //앞에 <T>는 제네릭 메소드 생성 규칙 (public, static 같은 것)
     public static <T> Response<T> success(T result) {
         return new Response("SUCCESS", result);
     }

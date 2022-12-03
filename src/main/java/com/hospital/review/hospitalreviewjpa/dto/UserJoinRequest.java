@@ -16,6 +16,7 @@ public class UserJoinRequest { //회원가입 때 요청받을 정보
     private String password;
     private String email;
 
+
     //request정보 -> 엔티티로 만들어주기
     public User toEntity(String password) {
         return User.builder()

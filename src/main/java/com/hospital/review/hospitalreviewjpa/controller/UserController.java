@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class UserController {
 
+    //서비스<--userdto--  [컨트롤러] --리스폰스-->웹
+
     private final UserService us;
 
     @PostMapping("/join")

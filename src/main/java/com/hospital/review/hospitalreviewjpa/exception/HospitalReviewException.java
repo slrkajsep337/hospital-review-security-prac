@@ -2,12 +2,13 @@ package com.hospital.review.hospitalreviewjpa.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.web.server.ResponseStatusException;
 
 
 @Getter
 @AllArgsConstructor
 public class HospitalReviewException extends RuntimeException{
+    //CustomException
+
     private ErrorCode errorCode;
     private String message;
 
