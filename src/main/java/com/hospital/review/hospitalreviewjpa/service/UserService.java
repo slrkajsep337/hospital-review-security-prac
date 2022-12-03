@@ -30,10 +30,16 @@ public class UserService {
 //        ur.findByUserName(request.getUserName())
 //                .orElseThrow(() -> new RuntimeException("해당 유저 이름이 중복됩니다."));
 
+        //findByUserName은 repository가 지원하는 메소드가 아니므로 repository에 선언해준다
         ur.findByUserName(request.getUserName())
-                //ifPresent : user가 있으면 -> ~~ 이렇게 처리를 해줘라/ orElseThrow랑 반대
+                //ifPresent : user가 있으면 -> ~~ 이렇게 처리를 해줘라(의도적으로 예외를 발생시킴)/ orElseThrow랑 반대
+//                .ifPresent(user -> {
+//                    throw new RuntimeException("해당 유저 이름이 중복됩니다.");
+//                });
                 .ifPresent(user -> {
-                    throw new RuntimeException("해당 유저 이름이 중복됩니다.");
+                    //CustomException을 사용해준다
+                    throw new HospitalReviewException(ErrorCode.DUPLICATED_USER_NAME,
+                            ErrorCode.DUPLICATED_USER_NAME.getMessage());
                 });
 
         // 회원가입 .save()
