@@ -70,6 +70,7 @@ public class UserService {
         };
 
         // 두가지 확인중 예외 안났으면 Token발행
+        //secretKey <- 환경변수에 넣어준 값을 @Value("${jwt.token.secret}") 어노테이션으로 가져와서 넣는다
         return JwtUtil.createToken(userName, secretKey, expireTime);
     }
 
