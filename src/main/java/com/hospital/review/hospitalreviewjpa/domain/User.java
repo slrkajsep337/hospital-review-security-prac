@@ -21,5 +21,10 @@ public class User {
     private String password;
     private String emailAddress;
 
+    //userRole 목록 enum으로 만들어주기
+    @Enumerated(EnumType.STRING)
+    private UserRole role;
 
 }
+
+
