@@ -17,8 +17,9 @@ repositories {
 
 dependencies {
     implementation group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
-    implementation 'javax.xml.bind:jaxb-api:2.3.1'
     //토큰을 발행시키기 위한 dependency
+    implementation 'javax.xml.bind:jaxb-api:2.3.1'
+    //ClassNotFoundException 오류 처리
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.7.6'
     implementation 'org.springframework.security:spring-security-test:5.7.3'
     implementation 'org.springframework.boot:spring-boot-starter-security:2.7.5'
