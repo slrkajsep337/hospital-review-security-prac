@@ -26,16 +26,10 @@ public class UserService {
 
 
     public UserDto join(UserJoinRequest request) {
-        //userName(id) 중복 체크 -> 중복이면 회원가입 불가(exception 발생)
-//        ur.findByUserName(request.getUserName())
-//                .orElseThrow(() -> new RuntimeException("해당 유저 이름이 중복됩니다."));
 
         //findByUserName은 repository가 지원하는 메소드가 아니므로 repository에 선언해준다
         ur.findByUserName(request.getUserName())
                 //ifPresent : user가 있으면 -> ~~ 이렇게 처리를 해줘라(의도적으로 예외를 발생시킴)/ orElseThrow랑 반대
-//                .ifPresent(user -> {
-//                    throw new RuntimeException("해당 유저 이름이 중복됩니다.");
-//                });
                 .ifPresent(user -> {
                     //CustomException을 사용해준다
                     throw new HospitalReviewException(ErrorCode.DUPLICATED_USER_NAME,
@@ -63,8 +57,6 @@ public class UserService {
 
         // userName이 있다면 그 다음에는 password가 일치 하는지 여부 확인, 비밀번호가 틀리다면
 //        if(password!=user.getPassword()) {
-//            throw new HospitalReviewException(ErrorCode.INVALID_PASSWORD,"비밀번호가 틀렸습니다");
-//        }
         if(!encoder.matches(password, user.getPassword())) {
             throw new HospitalReviewException(ErrorCode.INVALID_PASSWORD,"비밀번호가 틀렸습니다");
         };
